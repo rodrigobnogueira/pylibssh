@@ -1214,6 +1214,12 @@ jobs:
         ${{ needs.pre-setup.outputs.sdist-artifact-name }}
       dists-artifact-name: >-
         ${{ needs.pre-setup.outputs.dists-artifact-name }}
+      cython-tracing: >-  # Cython line tracing for coverage collection
+        ${{
+          fromJSON(needs.pre-setup.outputs.profiling-enabled)
+          && 'true'
+          || 'false'
+        }}
     secrets:
       codecov-token: ${{ secrets.CODECOV_TOKEN }}
 
@@ -1253,6 +1259,12 @@ jobs:
         ${{ needs.pre-setup.outputs.sdist-artifact-name }}
       dists-artifact-name: >-
         ${{ needs.pre-setup.outputs.dists-artifact-name }}
+      cython-tracing: >-  # Cython line tracing for coverage collection
+        ${{
+          fromJSON(needs.pre-setup.outputs.profiling-enabled)
+          && 'true'
+          || 'false'
+        }}
     secrets:
       codecov-token: ${{ secrets.CODECOV_TOKEN }}
 

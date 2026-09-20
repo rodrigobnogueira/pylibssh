@@ -243,12 +243,16 @@ jobs:
       shell: python
 
     - name: Run the testing
+      # NOTE: Without `--skip-pkg-install`, this second run would rebuild the
+      # NOTE: package from the source tree, untraced, and install it over the
+      # NOTE: pre-built dist put in place above.
       run: >-
         python -m
         tox
         --parallel auto
         --parallel-live
         --skip-missing-interpreters false
+        --skip-pkg-install
         -qq
     - name: Produce markdown test summary from JUnit
       if: always()
